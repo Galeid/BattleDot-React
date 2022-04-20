@@ -1,5 +1,11 @@
 import AppRoutes from "./AppRoutes";
+import ContentCard from "./ContentCard";
+import Dot from "./Dot";
+import MetricCard from "./MetricCard";
 
 export {
-  AppRoutes
+  Dot,
+  MetricCard,
+  ContentCard,
+  AppRoutes,
 }
