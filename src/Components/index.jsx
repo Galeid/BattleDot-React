@@ -1,10 +1,10 @@
 import AppRoutes from "./AppRoutes";
 import ContentCard from "./ContentCard";
-import Dot from "./Dot";
 import MetricCard from "./MetricCard";
+import Sprite from "./Sprite";
 
 export {
-  Dot,
+  Sprite,
   MetricCard,
   ContentCard,
   AppRoutes,
