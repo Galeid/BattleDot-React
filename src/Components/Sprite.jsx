@@ -15,62 +15,71 @@ const Sprite = ({
 
   const [currentAnimation, setCurrentAnimation] = useState([])
   const [currentInterval, setCurrentInterval] = useState(0)
-  const [posX, setPosX] = useState(0)
-  const [posY, setPosY] = useState(0)
+  const [coordX, setCoordX] = useState(0)
+  const [coordY, setCoordY] = useState(0)
 
   useEffect(() => {
     playRef.current = playAnimation
-    initialAnim === 'default' ?
-      playAnimation('default') : playAnimation(initialAnim)
+    initialAnim === 'default'
+      ? playAnimation('default')
+      : playAnimation(initialAnim)
     // eslint-disable-next-line
   }, [])
 
   useEffect(() => {
     if (currentAnimation.length <= 0) return
+
+    if (currentAnimation.length === 1) {
+      setSpriteCoords(currentAnimation[0])
+      return
+    }
+
     let cont = 0
     let intervalId = setInterval(() => {
       if (cont === currentAnimation.length) cont = 0
-      getFrameCoords(currentAnimation[cont])
+      setSpriteCoords(currentAnimation[cont])
       cont++
     }, 1000 / fps)
     setCurrentInterval(intervalId)
+
     return () => {
       clearInterval(intervalId)
     }
     // eslint-disable-next-line
   }, [currentAnimation])
 
-  const file = require(`./../Assets/${filename}`)
-  const dimensions = {
+  const FILE = require(`./../Assets/${filename}`)
+  const DIMENSIONS = {
     height: height / rows,
     width: width / columns
   }
-
-  const styles = {
-    backgroundImage: `url(${file})`,
+  const STYLES = {
+    backgroundImage: `url(${FILE})`,
     backgroundRepeat: 'no-repeat',
-    backgroundPositionX: posX * -1,
-    backgroundPositionY: posY * -1,
-    height: dimensions.height,
-    width: dimensions.width,
+    backgroundPositionX: coordX * -1,
+    backgroundPositionY: coordY * -1,
+    height: DIMENSIONS.height,
+    width: DIMENSIONS.width,
   }
 
   const playAnimation = ( animName ) => {
     clearInterval(currentInterval)
-    setCurrentAnimation( animations[animName] )
+    animName === 'default'
+      ? setCurrentAnimation([1])
+      : setCurrentAnimation( animations[animName] )
     console.log(`Playing '${animName}' animation`)
   }
 
-  const getFrameCoords = ( position = 1 ) => {
+  const setSpriteCoords = ( position = 1 ) => {
     let currentPos = position - 1
     let currentCol = currentPos % columns
-    let currentRow = (( currentPos - currentCol ) / columns )
-    setPosX( currentCol * dimensions.width )
-    setPosY( currentRow * dimensions.height )
+    let currentRow = ((currentPos - currentCol) / columns)
+    setCoordX(currentCol * DIMENSIONS.width)
+    setCoordY(currentRow * DIMENSIONS.height)
   }
 
   return (
-    <div style={styles} />
+    <div style={STYLES} />
   )
 }
 

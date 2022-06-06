@@ -20,6 +20,12 @@ const Header = () => {
               </Link>
             </li>
             <li className="grow w-0 mr-6 my-2 md:my-0">
+              <Link to="test" className={'my-2 py-2 flex items-center justify-center hover:bg-zinc-700 focus:border-zinc-700 rounded'}>
+                <HomeIcon width={'1.5rem'}/>
+                <span className='pl-2'>Sprite Test</span>
+              </Link>
+            </li>
+            <li className="grow w-0 mr-6 my-2 md:my-0">
               <Link to="play" className={'my-2 py-2 flex items-center justify-center hover:bg-zinc-700 focus:border-zinc-700 rounded'}>
                 <HomeIcon width={'1.5rem'}/>
                 <span className='pl-2'>Game</span>

@@ -1,4 +1,4 @@
-const Home = () => {
+const HomeView = () => {
 
   return (
     <main className="container mx-auto pt-5">
@@ -12,4 +12,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default HomeView
